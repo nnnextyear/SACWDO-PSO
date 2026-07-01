@@ -6,18 +6,19 @@ Clarke-Wright savings initialization + improved particle swarm optimization with
 
 ```text
 data/                          # CSV benchmark dataset used by the released implementation
+simulation_data/               # UE4/AirSim simulation result data used in the manuscript
 new_pso/
-├── main.py                    # Entry point
-├── problem/
-│   ├── model.py               # VRPTW problem model with soft time-window penalties
-│   └── data_loader.py         # CSV data loader
-├── components/
-│   ├── clarke_wright.py       # Clarke-Wright savings initialization
-│   ├── adaptive.py            # Adaptive parameter control
-│   ├── sa_search.py           # Simulated annealing local search
-│   └── local_search.py        # Neighborhood operators
-└── solvers/
-    └── improved_pso.py        # SACWDO-PSO solver
+|-- main.py                    # Entry point
+|-- problem/
+|   |-- model.py               # VRPTW problem model with soft time-window penalties
+|   `-- data_loader.py         # CSV data loader
+|-- components/
+|   |-- clarke_wright.py       # Clarke-Wright savings initialization
+|   |-- adaptive.py            # Adaptive parameter control
+|   |-- sa_search.py           # Simulated annealing local search
+|   `-- local_search.py        # Neighborhood operators
+`-- solvers/
+    `-- improved_pso.py        # SACWDO-PSO solver
 ```
 
 ## Usage
@@ -35,7 +36,7 @@ The released implementation uses a fixed random seed in `main.py`:
 random.seed(42)
 ```
 
-The repository includes the core source code, the benchmark dataset file used by the released implementation, and fixed random seed information. Changing or removing the seed will restore stochastic behavior.
+The repository includes the core source code, the benchmark dataset file used by the released implementation, fixed random seed information, and the UE4/AirSim simulation result data used for the manuscript analysis. Changing or removing the seed will restore stochastic behavior.
 
 ## Experimental Settings in the Released Implementation
 
@@ -65,9 +66,20 @@ The simulated-annealing local search uses four basic neighborhood operations con
 - insertion
 - route reversal
 
+## Simulation Data
+
+The `simulation_data/` directory contains the UE4/AirSim simulation result data used in the manuscript. The files are organized by algorithm and scenario:
+
+- `improved_no_obstacle/`: SACWDO-PSO results in the obstacle-free scenario
+- `discrete_pso_no_obstacle/`: DPSO results in the obstacle-free scenario
+- `improved_obstacle/`: SACWDO-PSO results in the obstacle scenario
+- `discrete_pso_obstacle/`: DPSO results in the obstacle scenario
+
+These files provide the simulation result records used for the execution-feasibility analysis. They are not intended to provide a complete UE4/AirSim project package.
+
 ## Data Availability
 
-The repository provides the core source code, the benchmark dataset file used by the released implementation, and fixed random seed information to support reproducibility of the released code.
+The repository provides the core source code, the benchmark dataset file used by the released implementation, fixed random seed information, and the UE4/AirSim simulation result data used in the manuscript to support reproducibility of the released code and reported simulation analysis.
 
 ## License
 
